@@ -42,15 +42,24 @@ export default class Cart extends React.Component{
             products:products
         })
     }
+    handleDeleteProduct = (product)=>{
+        const {products} = this.state
+        const index = products.indexOf(product)
+        products.splice(index, 1)
+        this.setState({
+            products:products
+        })
+    }
     render() {
         return (
             <div className="cart">
-                {this.state.products.map((item)=>{
+                {this.state.products.length===0?"Cart is Empty":this.state.products.map((item)=>{
                     return (
                         <CartItem
                             product={item}
                             onIncreaseQuantity={this.handleIncreaseQuantity}
                             onDecreaseQuantity={this.handleDecreaseQuantity}
+                            onDeleteProduct={this.handleDeleteProduct}
                         />) // this will pass as props
                 })}
             </div>

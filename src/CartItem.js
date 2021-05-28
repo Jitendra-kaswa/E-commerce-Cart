@@ -45,7 +45,7 @@ export default class CartItem extends React.Component{
                     <div className="cart-item-actions">
                         <img alt="increase" className="action-icons" onClick={()=>{this.props.onIncreaseQuantity(this.props.product)}} src="https://image.flaticon.com/icons/png/512/992/992651.png"/>
                         <img alt="decrease" className="action-icons" onClick={()=>{this.props.onDecreaseQuantity(this.props.product)}} src="https://image.flaticon.com/icons/png/512/992/992683.png"/>
-                        <img alt="delete" className="action-icons" src="https://image.flaticon.com/icons/png/512/3096/3096673.png"/>
+                        <img alt="delete" className="action-icons" onClick={()=>{this.props.onDeleteProduct(this.props.product)}} src="https://image.flaticon.com/icons/png/512/3096/3096673.png"/>
                     </div>
                 </div>
             </div>

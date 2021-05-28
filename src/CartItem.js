@@ -9,14 +9,26 @@ export default class CartItem extends React.Component{
             qty:1,
             img:''
         }
+        // this.increaseQuantity = this.increaseQuantity.bind(this)
     }
     increaseQuantity=()=>{ {/* we have to use arrow function or use function binding otherwise it will give error */}
-        this.state.qty+=1;
-        console.log(this.state);
+        //this.state.qty+=1; {/* this will just increas the quantity but UI will not change se we have to use setState function */}
+       // setState is a inherited function
+
+       // setState form 1 - if previous state is not required use this
+    //    this.setState({
+    //        qty:this.state.qty+1
+    //     })
+
+        // setState form 2 - if previous state required than use this method
+        this.setState((prevState)=>{
+            return {qty:prevState.qty+1}
+        })
     }
     decreaseQuantity=()=>{
-        this.state.qty-=1;
-        console.log(this.state);
+        this.setState((prevState)=>{
+            return prevState.qty===1? {}: {qty:prevState.qty-1}
+        })
     }
     render() {
         return (
@@ -30,8 +42,8 @@ export default class CartItem extends React.Component{
                     <div style={{color:'#777'}}>Qty : {this.state.qty}</div>
                     {/* Buttons */}
                     <div className="cart-item-actions">
-                        <img alt="increase" className="action-icons" onClick={this.decreaseQuantity} src="https://image.flaticon.com/icons/png/512/992/992683.png"/>
-                        <img alt="decrease" className="action-icons" onClick={this.increaseQuantity} src="https://image.flaticon.com/icons/png/512/992/992651.png"/>
+                        <img alt="increase" className="action-icons" onClick={this.increaseQuantity} src="https://image.flaticon.com/icons/png/512/992/992651.png"/>
+                        <img alt="decrease" className="action-icons" onClick={this.decreaseQuantity} src="https://image.flaticon.com/icons/png/512/992/992683.png"/>
                         <img alt="delete" className="action-icons" src="https://image.flaticon.com/icons/png/512/3096/3096673.png"/>
                     </div>
                 </div>
